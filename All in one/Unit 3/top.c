@@ -90,7 +90,9 @@ int main()
         }
         else if(action == 5)
         {
+            printf("Exiting...");
             done = 1;
+            
         }
         else{
             printf("Invalid");
