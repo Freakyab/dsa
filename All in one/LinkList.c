@@ -100,59 +100,59 @@ void delete(node* curr)
 // 1. Data
 // 2. Link
 
-#include<stdio.h>
-#include<stdlib.h>
-typedef struct nd
-{
-    int data;
-    struct node *next;
-}node;
+// #include<stdio.h>
+// #include<stdlib.h>
+// typedef struct nd
+// {
+//     int data;
+//     struct node *next;
+// }node;
 
-node *create_list()
-{
-    int k,n;
-    node *p,*head;
-    printf("Enter the number of nodes: ");
-    scanf("%d",&n);
+// node *create_list()
+// {
+//     int k,n;
+//     node *p,*head;
+//     printf("Enter the number of nodes: ");
+//     scanf("%d",&n);
 
-    for(k=0;k<n;k++)
-    {
-        if(k==0)
-        {
-            head = (node*)malloc(sizeof(node));
-            p=head;
-        }
-        else{
-            p->next = (node*)malloc(sizeof(node));
-            p=p->next;
-        }
-        printf("Enter the data for node %d: ",k+1);
-        scanf("%d",&p->data);
-    }
-    p->next = NULL;
-    return head;
-}
+//     for(k=0;k<n;k++)
+//     {
+//         if(k==0)
+//         {
+//             head = (node*)malloc(sizeof(node));
+//             p=head;
+//         }
+//         else{
+//             p->next = (node*)malloc(sizeof(node));
+//             p=p->next;
+//         }
+//         printf("Enter the data for node %d: ",k+1);
+//         scanf("%d",&p->data);
+//     }
+//     p->next = NULL;
+//     return head;
+// }
 
-// 2.Traversal
-void display(node * head){
-    int count = 1;
-    node *p;
+// // 2.Traversal
+// void display(node * head){
+//     int count = 1;
+//     node *p;
 
-    p = head;
-    while(p!=NULL)
-    {
-        printf("Data for node %d is %d\n",count,p->data);
-        count++;
-        p = p->next;
-    } 
-}
+//     p = head;
+//     while(p!=NULL)
+//     {
+//         printf("Data for node %d is %d\n",count,p->data);
+//         count++;
+//         p = p->next;
+//     } 
+// }
 
-void main()
-{
-    node *head;
-    head = create_list();
-    display(head);
-}
+// void main()
+// {
+//     node *head;
+//     head = create_list();
+//     display(head);
+// }
 
 /* Testing 
 #include <stdio.h>
@@ -242,32 +242,32 @@ int main()
 //     return head;
 // }
 
-node* delete(node* head,int pos)
-{
-    node *p,*del;
-    p = head;
+// node* delete(node* head,int pos)
+// {
+//     node *p,*del;
+//     p = head;
 
-    // If the node to be deleted is the first node
-    if(p->data == pos)
-    {
-        head = p->next;
-        free(p);
-        return head;
-    }
-    while(p->next != NULL)
-    {   
-        printf("%d\n",p->next->data);
-        if(p->next->data==pos)
-        {
-            del = p->next;
-            p->next = del->next;
-            free(del);
-            break;
-        }
-        p = p->next;
-    }
-    return head;
-}
+//     // If the node to be deleted is the first node
+//     if(p->data == pos)
+//     {
+//         head = p->next;
+//         free(p);
+//         return head;
+//     }
+//     while(p->next != NULL)
+//     {   
+//         printf("%d\n",p->next->data);
+//         if(p->next->data==pos)
+//         {
+//             del = p->next;
+//             p->next = del->next;
+//             free(del);
+//             break;
+//         }
+//         p = p->next;
+//     }
+//     return head;
+// }
 
 // node * Concatenate(node * head)
 // {
@@ -388,85 +388,201 @@ node* delete(node* head,int pos)
 
 // p(X)= 3X^4 + 2X^3 + 9X -2
 
+// #include <stdio.h>
+// #include <stdlib.h>
+
+// typedef struct node{
+//     int coeff;
+//     int expo;
+//     struct node *next;
+// }node;
+
+// node *create()
+// {
+//     node *head,*p;
+//     int k,n;
+//     printf("Enter the number of terms: ");
+//     scanf("%d",&n);
+//     for(k=0;k<n;k++)
+//     {
+//         if(k==0)
+//         {
+//             head = (node*)malloc(sizeof(node *));
+//             p = head;
+//         }
+//         else{
+//             p->next = (node*)malloc(sizeof(node*));
+//             p = p->next;
+//         }
+//         printf("Enter the coefficient: ");
+//         scanf("%d",&p->coeff);
+//         printf("Enter the exponent: ");
+//         scanf("%d",&p->expo);
+//     }
+//     p->next = NULL;
+//     return head;
+// }
+
+// node *display(node * head)
+// {
+//     while(head!= NULL)
+//     {
+//         printf("%dx^%d + ",head->coeff,head->expo);
+//         head = head->next;
+//     }
+//     printf("0");
+//     printf("\n");
+// }
+
+// node *add(node*q ,node*p)
+// {
+//     node *last;
+//     last = (node *)malloc(sizeof(node *));
+//     while(p!=NULL && q!=NULL)
+//     {
+//         if(p->expo > q->expo)
+//         {
+//             last-> expo = p-> expo;
+//             last-> coeff = p-> coeff;
+//             p = p-> next;
+//         }
+//         else if(p->expo < q->expo)
+//         {
+//             last-> expo = q-> expo;
+//             last-> coeff = q-> coeff;
+//             q = q-> next;
+//         }
+//         else{
+//             last-> expo = p-> expo;
+//             last-> coeff = p-> coeff + q-> coeff;
+//             p = p-> next;
+//             q = q-> next;
+//         }
+//     }
+//     return last;
+// }
+// int main(){
+//     node *p ,*q , *result;
+//     p = create();
+//     display(p);
+//     q = create();
+//     display(q);
+//     result = add(p,q);
+//     display(result);
+// }0
+
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node{
-    int coeff;
-    int expo;
-    struct node *next;
-}node;
-
-node *create()
+// binary tree root
+struct node
 {
-    node *head,*p;
-    int k,n;
-    printf("Enter the number of terms: ");
-    scanf("%d",&n);
-    for(k=0;k<n;k++)
-    {
-        if(k==0)
-        {
-            head = (node*)malloc(sizeof(node *));
-            p = head;
-        }
-        else{
-            p->next = (node*)malloc(sizeof(node*));
-            p = p->next;
-        }
-        printf("Enter the coefficient: ");
-        scanf("%d",&p->coeff);
-        printf("Enter the exponent: ");
-        scanf("%d",&p->expo);
-    }
-    p->next = NULL;
-    return head;
+    int data;
+    struct node *left;
+    struct node *right;
+};
+
+struct node *createNode(int data)
+{
+    struct node *temp = (struct node *)malloc(sizeof(struct node));
+    temp->data = data;
+    temp->left = NULL;
+    temp->right = NULL;
+
+    return temp;
 }
 
-node *display(node * head)
+void newNode(int data, struct node *head)
 {
-    while(head!= NULL)
+    struct node *atPresent = head;
+    struct node *p;
+
+    while (1)
     {
-        printf("%dx^%d + ",head->coeff,head->expo);
-        head = head->next;
+        if (atPresent->data >= data)
+        {
+            if (atPresent->left != NULL)
+            {
+                atPresent = atPresent->left;
+            }
+            else
+            {
+                p = createNode(data);
+                atPresent->left = p;
+                return;
+            }
+        }
+        else if (atPresent->data <= data)
+        {
+            if (atPresent->right != NULL)
+            {
+                atPresent = atPresent->right;
+            }
+            else
+            {
+                p = createNode(data);
+                atPresent->right = p;
+                return;
+            }
+        }
     }
-    printf("0");
+}
+
+void PreOrder(struct node *root)
+{
+    if (root == NULL)
+    {
+        return ;
+    }
+
+    printf("%d", root->data);
+    PreOrder(root->left);
+    PreOrder(root->right);
+}
+
+void PostOrder(struct node *head)
+{
+    if (head == NULL)
+    {
+        return;
+    }
+    printf("\n");
+
+    PostOrder(head->left);
+    PostOrder(head->right);
+    printf("%d", head->data);
+}
+
+void InOrder(struct node *head)
+{
+    if (head == NULL)
+    {
+        return;
+    }
+
+    PostOrder(head->left);
+    printf("%d", head->data);
+    PostOrder(head->right);
     printf("\n");
 }
 
-node *add(node*q ,node*p)
+int main()
 {
-    node *last;
-    last = (node *)malloc(sizeof(node *));
-    while(p!=NULL && q!=NULL)
-    {
-        if(p->expo > q->expo)
-        {
-            last-> expo = p-> expo;
-            last-> coeff = p-> coeff;
-            p = p-> next;
-        }
-        else if(p->expo < q->expo)
-        {
-            last-> expo = q-> expo;
-            last-> coeff = q-> coeff;
-            q = q-> next;
-        }
-        else{
-            last-> expo = p-> expo;
-            last-> coeff = p-> coeff + q-> coeff;
-            p = p-> next;
-            q = q-> next;
-        }
-    }
-    return last;
-}
-int main(){
-    node *p ,*q , *result;
-    p = create();
-    display(p);
-    q = create();
-    display(q);
-    result = add(p,q);
-    display(result);
+    struct node *head = createNode(1);
+    newNode(2, head);
+    newNode(3, head);
+    newNode(4, head);
+    newNode(5, head);
+
+    printf("PreOrder:- ");
+    PreOrder(head);
+    printf("\n");
+    printf("PostOrder:- ");
+    PostOrder(head);
+    printf("\n");
+    printf("InOrder:-");
+    InOrder(head);
+    printf("\n");
+
+    return 0;
 }

@@ -504,15 +504,15 @@
 
 // int swap(int *a,int *b){
 //     int temp = *a;
-//     *a =*b;
-//     *b = temp;
+    // *a =*b;
+    // *b = temp;
 // }
 
 // int partition(int arr[],int low,int high){
 //     int pivot = arr[high];
 //     int i = low-1;
 //     for(int j= low;j<=high-1;j++){
-//         if(arr[j]<=pivot){
+//         if(arr[j]<=pivot){All in one/practical.c
 //             i++;
 //             swap(&arr[i],&arr[j]);
 //         }
@@ -734,41 +734,33 @@
 
 
 // Write a program to implement Depth First Search in c?
-
-#include <stdio.h>
-#include <stdlib.h>
-
-int visited[10] = {0};
-
-int adj[10][10] = {0};
-
-
-void dfs(int v, int n) {
-    int i;
-    visited[v] = 1;
-    printf("%d ", v);
-    for (i = 1; i <= n; i++) {
-        if (adj[v][i] == 1 && visited[i] == 0) {
-            dfs(i, n);
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int visited[7] = {0,0,0,0,0,0,0};
+    int A [7][7] = {
+        {0,1,1,1,0,0,0},
+        {1,0,1,0,0,0,0},
+        {1,1,0,1,1,0,0},
+        {1,0,1,0,1,0,0},
+        {0,0,1,1,0,1,1},
+        {0,0,0,0,1,0,0}, 
+        {0,0,0,0,1,0,0} 
+    };
+ 
+void DFS(int i){
+    printf("%d ", i);
+    visited[i] = 1;
+    for (int j = 0; j < 7; j++)
+    {
+        if(A[i][j]==1 && !visited[j]){
+            DFS(j);
         }
     }
 }
-
-int main() {
-    int n, e, i, v1, v2;
-    printf("Enter the number of vertices: ");
-    scanf("%d", &n);
-    printf("Enter the number of edges: ");
-    scanf("%d", &e);
-    for (i = 1; i <= e; i++) {
-        printf("Enter the edge %d: ", i);
-        scanf("%d %d", &v1, &v2);
-        adj[v1][v2] = 1;
-        adj[v2][v1] = 1;
-    }
-    printf("Enter the starting vertex: ");
-    scanf("%d", &v1);
-    printf("DFS: ");
-    dfs(v1, n);
+ 
+int main(){ 
+    // DFS Implementation  
+    DFS(0); 
     return 0;
 }
