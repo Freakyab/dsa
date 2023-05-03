@@ -62,6 +62,7 @@
 //   return 0;
 // }
 
+
 // Write a program to search an element using Linear search.
 
 // #include <stdio.h>
@@ -703,7 +704,7 @@
 //     if (*head != NULL) {
 //         (*head)->prev = newNode;
 //     }
-//     *head = newNode;
+    // *head = newNode;
 // }
 
 // // function to display the content of a doubly linked list
@@ -734,33 +735,33 @@
 
 
 // Write a program to implement Depth First Search in c?
-#include<stdio.h>
-#include<stdlib.h>
+// #include<stdio.h>
+// #include<stdlib.h>
  
-int visited[7] = {0,0,0,0,0,0,0};
-    int A [7][7] = {
-        {0,1,1,1,0,0,0},
-        {1,0,1,0,0,0,0},
-        {1,1,0,1,1,0,0},
-        {1,0,1,0,1,0,0},
-        {0,0,1,1,0,1,1},
-        {0,0,0,0,1,0,0}, 
-        {0,0,0,0,1,0,0} 
-    };
+// int visited[7] = {0,0,0,0,0,0,0};
+//     int A [7][7] = {
+//         {0,1,1,1,0,0,0},
+//         {1,0,1,0,0,0,0},
+//         {1,1,0,1,1,0,0},
+//         {1,0,1,0,1,0,0},
+//         {0,0,1,1,0,1,1},
+//         {0,0,0,0,1,0,0}, 
+//         {0,0,0,0,1,0,0} 
+//     };
  
-void DFS(int i){
-    printf("%d ", i);
-    visited[i] = 1;
-    for (int j = 0; j < 7; j++)
-    {
-        if(A[i][j]==1 && !visited[j]){
-            DFS(j);
-        }
-    }
-}
+// void DFS(int i){
+//     printf("%d ", i);
+//     visited[i] = 1;
+//     for (int j = 0; j < 7; j++)
+//     {
+//         if(A[i][j]==1 && !visited[j]){
+//             DFS(j);
+//         }
+//     }
+// }
  
-int main(){ 
-    // DFS Implementation  
-    DFS(0); 
-    return 0;
-}
+// int main(){ 
+//     // DFS Implementation  
+//     DFS(0); 
+//     return 0;
+// }

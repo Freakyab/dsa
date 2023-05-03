@@ -378,42 +378,73 @@ void mergeSort (int arr[],int l,int r)
     }
 }
 
+  
 // queue
-#define Max 5
-int q[Max];
-int r = -1,f = -1;
+// #define Max 5
+// int q[Max];
+// int r = -1,f = -1;
 
-void Enqueue(int x)
-{
-    if(r == Max-1){
-        printf("Queue Overflow\n");
+// void Enqueue(int x)
+// {
+//     if(r == Max-1){
+//         printf("Queue Overflow\n");
+//     }
+//     else{
+//         if(f == -1)
+//         {
+//             f = 0;
+//             r++;
+//         }
+//         else{
+//             r++;
+//             q[r] = x;
+//         }
+//     }
+// }
+
+// void Dequeue(){
+//     if(f == r )
+//     {
+//         printf("Queue underflow\n");
+//     }
+//     else{
+//         f++;
+//     }
+// }
+#define max 5
+int q[max];
+int r =-1;
+int f =-1;
+
+int Enqueue(int x){
+    if(r == max-1)
+    {
+        printf("overflow");
     }
     else{
-        if(f == -1)
+        if(f==-1)
         {
-            f = 0;
-            r++;
+            f++;
         }
-        else{
-            r++;
-            q[r] = x;
-        }
+        r++;
+        q[r] = x;
     }
 }
-
-void Dequeue(){
-    if(f == r )
-    {
-        printf("Queue underflow\n");
+int Dequeue(){
+    if(f == r || f==-1){
+        printf("underflow");
     }
     else{
         f++;
     }
 }
-
 void display(){
     for(int i = f;i<=r;i++)
     {
+        if(f== r){
+            printf("Empty\n");
+            break;
+        }
         printf("The data : %d\n",q[i]);
     }
 }
@@ -485,7 +516,7 @@ int dequeue(struct Queue* q) {
     return data;
 }
 
-void display(struct Queue* q) {
+void display1(struct Queue* q) {
     if (q->front == NULL) {
         printf("Queue is empty\n");
         return;
@@ -503,45 +534,123 @@ void display(struct Queue* q) {
     printf("\n");
 }
 
-void main()
+// void main()
+// {
+//     int arr[] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+//     int n = sizeof(arr) / sizeof(arr[0]);
+
+//     // int found;
+//     // int i;
+//     // printf("Enter the no You want to search: ");
+//     // scanf("%d", &i);
+
+//     // found = linear_search(arr,n);
+
+//     // found = binear_search(arr, 0, n - 1, i);
+
+//     // if (found == -1)
+//     // {
+//     //     printf("not Found");
+//     // }
+//     // else
+//     // {
+//     //     printf("found at index %d", found);
+//     // }
+
+//     // bubbleSort(arr,n);
+//     // selectionSort(arr, n);
+//     // insertionSort(arr, n);
+//     // quickSort(arr, 0, n - 1);
+//     // mergeSort(arr, 0, n - 1);
+//     // printArr(arr, n);
+
+//     Enqueue(5);
+//     // Enqueue(6);
+//     // Enqueue(7);
+//     // Enqueue(8);
+//     Dequeue();
+//     display();
+//     // push(5);
+//     // push(6);
+//     // pop();
+//     // peek();
+// }
+int queue[max];
+int front = -1;
+int rear = -1;
+int matrix[max][max] = {
+    {1,0,0,0,0},
+    {1,0,1,0,1},
+    {0,0,1,0,0},
+    {0,1,0,0,1},
+    {1,0,1,0,0}
+};
+int visitedBFS[max]={0};
+
+int full()
 {
-    int arr[] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
-    int n = sizeof(arr) / sizeof(arr[0]);
-
-    // int found;
-    // int i;
-    // printf("Enter the no You want to search: ");
-    // scanf("%d", &i);
-
-    // found = linear_search(arr,n);
-
-    // found = binear_search(arr, 0, n - 1, i);
-
-    // if (found == -1)
-    // {
-    //     printf("not Found");
-    // }
-    // else
-    // {
-    //     printf("found at index %d", found);
-    // }
-
-    // bubbleSort(arr,n);
-    // selectionSort(arr, n);
-    // insertionSort(arr, n);
-    // quickSort(arr, 0, n - 1);
-    // mergeSort(arr, 0, n - 1);
-    // printArr(arr, n);
-
-    // Enqueue(5);
-    // Enqueue(6);
-    // Enqueue(7);
-    // Enqueue(8);
-    // Dequeue();
-    // display();
-    push(5);
-    push(6);
-    pop();
-    peek();
+    if(front == 0 & rear == max-1)
+        return 1;
+    return 0;
+}
+int empty()
+{
+    if(rear == -1)
+        return 1;
+    return 0;
 }
 
+int en(int x)
+{
+    if(!full())
+    {
+        if(front == -1)
+        {
+            front = 0;
+        }
+        else{
+            rear++;
+            queue[rear] =x;
+        }
+    }
+}
+int de()
+{
+    if(!empty())
+    {
+        int x = queue[front];
+        if(front == rear)
+        {
+            front = rear = -1;
+        }
+        else{
+            front++;
+        }
+        return x;
+    }
+}
+
+int bfs()
+{
+    int index = 1;
+    printf(" %d",index);
+    visitedBFS[index] =1;
+    en(index);
+    while(!empty())
+    {
+        int node = de();
+        for(int j = 0;j<max;j++)
+        {
+            if(matrix[node][j]==1&!visitedBFS[j])
+            {
+                printf(" %d",j);
+                visitedBFS[j] = 1;
+                en(j);
+            }
+        }
+    }
+}
+int main()
+{
+    bfs();
+}
