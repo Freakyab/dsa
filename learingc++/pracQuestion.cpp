@@ -141,6 +141,7 @@ Write a program to help the teacher
 //     ~CreateObj()
 //     {
 //         cout << "The object " << count << " getting destroyed" << endl;
+//         count -= 1;
 //     }
 // };
 
@@ -167,30 +168,26 @@ Write a program to help the teacher
 //         h = height;
 //         b = base;
 //     }
-//     inline void set(int side, int height, int base);
 //     inline int area();
 //     inline int perimeter();
 // };
-
-// void Triangle :: set(int side, int height, int base){
-//         s = side;
-//         h = height;
-//         b = base;
-//     }
-// int Triangle :: area(){
-//     return (h*b)/2;
+// int Triangle ::area()
+// {
+//     return (h * b) / 2;
 // }
-// int Triangle :: perimeter(){
-//     return h+s+b;
+// int Triangle ::perimeter()
+// {
+//     return h + s + b;
 // }
 
-// int main(){
+// int main()
+// {
 //     Triangle t1;
-//     Triangle t2(10,20,30);
-//     cout<<"Of default Area " << t1.area()<<endl;
-//     cout<<"Of default Perimeter "<<t1.perimeter()<<endl;
-//     cout<<"Of Arguments Area "<<t2.area()<<endl;
-//      cout<<"Of Arguments Perimeter "<<t2.perimeter()<<endl;
+//     Triangle t2(10, 20, 30);
+//     cout << "Of default Area " << t1.area() << endl;
+//     cout << "Of default Perimeter " << t1.perimeter() << endl;
+//     cout << "Of Arguments Area " << t2.area() << endl;
+//     cout << "Of Arguments Perimeter " << t2.perimeter() << endl;
 // }
 
 class complex{
@@ -216,21 +213,27 @@ class complex{
         temp.imag = imag - c.imag;
         return temp;
     }
+    complex mul(complex c){
+        complex temp;
+        temp.real = real * c.real;
+        temp.imag = imag * c.imag;
+        return temp;
+    }
     void get(){
         cout <<real<<" + "<<imag<<"i"<<endl;
     }
 };
 int main(){
-    complex c1(20,20),c2(50,30),c3,c4;
+    complex c1(20,20),c2(50,30),c3,c4,c5;
     c3 = c1.add(c2);
     c4 = c2.sub(c1);
     cout << "Addition of real and imaginary numbers : "<<endl;
     c3.get();
     cout << "Subtraction of real and imaginary numbers : "<<endl;
     c4.get();
-
+    cout << "Multiplication of real and imaginary numbers : "<<endl;
+    c5 = c1.mul(c2);
 }
-
 
 // class Circle
 // {
