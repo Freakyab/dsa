@@ -2,6 +2,7 @@
     "files.associations": {
         "*.py": "python",
         "insert_at_first_dsa.C": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "cmath": "cpp"
     }
 }

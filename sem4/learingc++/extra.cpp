@@ -37,7 +37,9 @@ public:
     }
     void get()
     {
-        cout <<"Total distance covered :\n"<<"Feet: "<<feet<<endl<<"Inch: "<<inch;
+        cout << "Total distance covered :\n"
+             << "Feet: " << feet << endl
+             << "Inch: " << inch;
     }
 };
 
@@ -67,6 +69,7 @@ int main()
             obj[i].setInch(j);
             f = obj[i].getFeet();
             obj[i].setFeet(f);
+            cout << endl;
         }
         else
         {
