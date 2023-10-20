@@ -3,6 +3,7 @@
         "*.py": "python",
         "insert_at_first_dsa.C": "cpp",
         "iostream": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "ostream": "cpp"
     }
 }

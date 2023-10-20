@@ -45,5 +45,20 @@ int main (){
     cout << "Circle Perimeter : " << ptr->Peri() <<endl;
 
     delete ptr;
+    // Shape *ptr;
+
+    // Rectangle r (4.0f,5.0f);
+    // Circle c (3.0f);
+
+    // ptr = &r;
+    // cout << "\t----Rectangle----\n";
+    // cout << "Rectangle Area : " << ptr->Area() <<endl;
+    // cout << "Rectangle Perimeter : " << ptr->Peri() <<endl;
+
+    // ptr = &c;
+    // cout << "\t----Circle------\n";
+    // cout << "Circle Area : " << ptr->Area() <<endl;
+    // cout << "Circle Perimeter : " << ptr->Peri() <<endl;
+
 
 }

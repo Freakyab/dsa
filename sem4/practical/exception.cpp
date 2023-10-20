@@ -1,23 +1,35 @@
 #include <iostream>
 using namespace std;
 
-int main(){
-    int divid ,div;
-    cout << "Enter the dividend: ";
-    cin>>divid;
+class ZeroDivision {
+    public:
+    void error(){
+        cout << "This is an ZerDivisionError" <<endl;
+    }
+};
 
-    cout << "Enter divisor: " ;
-    cin >> div;
-
-    try{
-        if(div != 0){
-            cout << "Answer : "<< divid/div << endl;
+class Divide{
+    int n1,n2;
+    public:
+    Divide(int a,int b) {n1 = a,n2 =b ;}
+    int div(){
+        if(n2==0){
+            ZeroDivision err;
+            throw err;
         }
         else{
-            throw(div);
+            return n1/n2;
         }
     }
-    catch(int div){
-        cout << "Zero division error";
+};
+
+int main(){
+    Divide d1(10,0);
+    try{
+        d1.div();
+    }
+    catch(ZeroDivision err){
+        err.error();
     }
 }
+
