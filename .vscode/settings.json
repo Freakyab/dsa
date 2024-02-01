@@ -4,6 +4,7 @@
         "insert_at_first_dsa.C": "cpp",
         "iostream": "cpp",
         "cmath": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "iomanip": "cpp"
     }
 }
