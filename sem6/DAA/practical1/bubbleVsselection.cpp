@@ -61,29 +61,6 @@ int readThefile(string file, int arr[])
     myFile.close();
 }
 
-// Function to update a file with the content of an array
-int updateFile(int arr[], string file, int n)
-{
-    // Open the file for writing
-    ofstream outputFile(file);
-
-    // Check if the file is opened successfully
-    if (outputFile.is_open())
-    {
-        // Write the content of the array to the file
-        for (int i = 0; i < n; i++)
-        {
-            outputFile << arr[i] << "\n";
-        }
-
-        // Notify that the array is saved to the file
-        cout << "Sorted array saved to: " << file << endl;
-
-        // Close the file
-        outputFile.close();
-    }
-}
-
 // Function to print the content of an array
 int printArray(int arr[], int n)
 {
@@ -109,13 +86,13 @@ int bubbleSort(int arr[], int n)
 {
     for (int i = 0; i < n - 1; i++)
     {
-        // cout << "Pass" << i + 1 << endl;
+        // Outer loop for passes
+        // Inner loop for comparisons and swaps
         for (int j = 0; j < n - 1; j++)
         {
             if (arr[j] > arr[j + 1])
             {
-                // Print the array during each swap for visualization
-                // printArray(arr, n);
+                // Swap the elements if they are in the wrong order
                 swap(arr[j], arr[j + 1]);
             }
         }
@@ -127,7 +104,8 @@ int selectionSort(int arr[], int n)
 {
     for (int i = 0; i < n - 1; i++)
     {
-        // cout << "Pass" << i + 1 << endl;
+        // Outer loop for passes
+        // Inner loop for finding the minimum element
         int minIndex = i;
         for (int j = i + 1; j < n; j++)
         {
@@ -136,90 +114,59 @@ int selectionSort(int arr[], int n)
                 minIndex = j;
             }
         }
-        // Print the array during each swap for visualization
-        // printArray(arr, n);
+        // Swap the minimum element with the current element
         swap(arr[i], arr[minIndex]);
     }
 }
 
 int main()
 {
-    // no. of random no. to be generated
+    // Number of random numbers to be generated
     int n = 500;
-    int choice;
-    cout << "1.Bubble sort\n2.Selection sort\nEnter : ";
-    cin >> choice;
 
-    if (choice == 1)
+    cout << "Bubble sort v/s Selection sort \n";
+    
+    // Loop to test different array sizes
+    while (n >= 500 & n <= 5000)
     {
+        int arr[n];
 
-        while (n >= 500 & n <= 5000)
-        {
+        string randomNumberFile = "unsorted.txt";
+        string sortedFile = "Bubblesorted.txt";
 
-            int arr[n];
+        // Generate random numbers and write them to the file
+        writeThefile(randomNumberFile, n);
 
-            string randomNumberFile = "unsorted.txt";
-            string sortedFile = "Bubblesorted.txt";
+        // Read the file into the array and print the original array
+        readThefile(randomNumberFile, arr);
 
-            // Generate random numbers and write them to the file
-            writeThefile(randomNumberFile, n);
+        // Perform Bubble Sort on the array
+        clock_t start_b, end_b;
+        float total_b;
 
-            // Read the file into the array and print the original array
-            readThefile(randomNumberFile, arr);
-            // cout << "Original Array: \n";
-            // printArray(arr, n);
+        start_b = clock();
+        bubbleSort(arr, n);
+        end_b = clock();
+        total_b = ((float)(end_b - start_b)) / CLOCKS_PER_SEC;
 
-            // Perform Selection Sort on the array
+        cout << "N " << n << ": " << setprecision(10) << total_b << ": B \t";
 
-            // Perform bubbleSort Sort on the array
-            clock_t start_s, end_s;
-            float total_s;
+        // Update the file with the sorted array
+        writeThefile(randomNumberFile, n);
+        readThefile(randomNumberFile, arr);
 
-            start_s = clock();
-            bubbleSort(arr, n);
-            end_s = clock();
-            total_s = ((float)(end_s - start_s)) / CLOCKS_PER_SEC;
-            // cout << "n = " << n << " ";
-            // cout << "Bubble sort " << setprecision(10) << total_s << endl;
+        // Perform Selection Sort on the array
+        clock_t start_s, end_s;
+        float total_s;
 
-            cout << setprecision(10) << total_s << ",";
-            // Update the file with the sorted array
+        start_s = clock();
+        selectionSort(arr, n);
+        end_s = clock();
+        total_s = ((float)(end_s - start_s)) / CLOCKS_PER_SEC;
+        
+        cout << "N " << n << ": " << setprecision(10) << total_s << ": S\n";
 
-            // updateFile(arr, sortedFile, n);
-            n = n + 500;
-        }
-    }
-    else if (choice == 2)
-    {
-        while (n >= 500 & n <= 5000)
-        {
-
-            int arr[n];
-
-            string randomNumberFile = "unsorted.txt";
-            string sortedFile = "selectionSorted.txt";
-
-            // Generate random numbers and write them to the file
-            writeThefile(randomNumberFile, n);
-
-            // Read the file into the array and print the original array
-            readThefile(randomNumberFile, arr);
-
-            clock_t start_s, end_s;
-            float total_s;
-
-            start_s = clock();
-            selectionSort(arr, n);
-            end_s = clock();
-            total_s = ((float)(end_s - start_s)) / CLOCKS_PER_SEC;
-            //  cout << "n = "<< n << " ";
-            // cout << "Selection sort " << setprecision(10) << total_s << endl;
-            cout << setprecision(10) << total_s << ",";
-
-            // Update the file with the sorted array
-            // updateFile(arr, sortedFile, n);
-
-            n = n + 500;
-        }
+        // Increase the size of the array for the next iteration
+        n = n + 500;
     }
 }
