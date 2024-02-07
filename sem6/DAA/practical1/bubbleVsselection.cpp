@@ -24,7 +24,7 @@ void writeThefile(string file, int n)
         return;
     }
 
-    // Generate and write random numbers to the file
+    // Generate a4nd write random numbers to the file
     for (int i = 0; i < n; i++)
     {
         myFile << rand() % MAX << "\n";
@@ -87,16 +87,21 @@ int bubbleSort(int arr[], int n)
     for (int i = 0; i < n - 1; i++)
     {
         // Outer loop for passes
+        // cout << "Pass " << i+1 <<": ";
         // Inner loop for comparisons and swaps
         for (int j = 0; j < n - 1; j++)
         {
             if (arr[j] > arr[j + 1])
             {
                 // Swap the elements if they are in the wrong order
+                // printArray(arr,n);
                 swap(arr[j], arr[j + 1]);
+
             }
         }
     }
+    // cout << endl;
+
 }
 
 // Function to perform Selection Sort on an array
@@ -105,6 +110,7 @@ int selectionSort(int arr[], int n)
     for (int i = 0; i < n - 1; i++)
     {
         // Outer loop for passes
+        // cout << "Pass :" << i+1;
         // Inner loop for finding the minimum element
         int minIndex = i;
         for (int j = i + 1; j < n; j++)
@@ -115,7 +121,30 @@ int selectionSort(int arr[], int n)
             }
         }
         // Swap the minimum element with the current element
+        // printArray(arr,n);
         swap(arr[i], arr[minIndex]);
+    }
+    // cout << endl;
+}
+int updateFile(int arr[], string file, int n)
+{
+    // Open the file for writing
+    ofstream outputFile(file);
+
+    // Check if the file is opened successfully
+    if (outputFile.is_open())
+    {
+        // Write the content of the array to the file
+        for (int i = 0; i < n; i++)
+        {
+            outputFile << arr[i] << "\n";
+        }
+
+        // Notify that the array is saved to the file
+        cout << "Sorted array saved to: " << file << endl;
+
+        // Close the file
+        outputFile.close();
     }
 }
 
@@ -127,7 +156,7 @@ int main()
     cout << "Bubble sort v/s Selection sort \n";
     
     // Loop to test different array sizes
-    while (n >= 500 & n <= 5000)
+    while (n >= 500 & n <= 500)
     {
         int arr[n];
 
@@ -150,6 +179,8 @@ int main()
         total_b = ((float)(end_b - start_b)) / CLOCKS_PER_SEC;
 
         cout << "N " << n << ": " << setprecision(10) << total_b << ": B \t";
+
+        updateFile(arr,sortedFile,n);
 
         // Update the file with the sorted array
         writeThefile(randomNumberFile, n);
