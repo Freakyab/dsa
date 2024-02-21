@@ -194,3 +194,29 @@ int main()
 
     return 0;
 }
+
+// int main()
+// {
+//     int a = 174;
+//     string binary = "";  // Rename to binary for clarity
+
+//     // Use correct loop condition
+//     while (a > 0)
+//     {
+//         int remainder = a % 2;
+//         int digit = '0' + remainder;  // Correct the digit calculation
+//         binary = char(digit) + binary;  // Add the digit to the front of the string
+//         a = a / 2;
+//     }
+
+//         // for(int j =0; j<binary.size()/2;j++){
+//         //     int temp ;
+//         //     temp = binary[j];
+//         //     binary[j]  = binary[binary.size()-1];
+//         //     binary[binary.size()-1] =  temp; 
+//         // }
+    
+//     cout << binary << endl;
+
+//     return 0;
+// }

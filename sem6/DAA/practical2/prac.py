@@ -1,0 +1,16 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+num_a = np.array([20000,40000,60000,80000,100000,120000,140000,160000,180000,200000,])
+tc_a = np.array([0.003000000026,0.004999999888,0.00800000038,0.01099999994,0.01400000043,0.01700000092,0.01999999955,0.02300000004,0.02600000054,0.03400000185,])
+
+num_b = np.array([20000,40000,60000,80000,100000,120000,140000,160000,180000,200000,])
+tc_b = np.array([0.1879999936,0.7730000019,1.741999984,3.085000038,4.940999985,6.927000046,9.654000282,12.54300022,16.24399948,19.8390007,])
+
+plt.plot(num_a, tc_a, label='Merge sort')
+plt.plot(num_b, tc_b, label='Insertion sort')
+plt.xlabel('Size of array')
+plt.ylabel('Time Complexity')
+plt.legend()
+plt.title('Merge Sort vs Insertion Sort')
+plt.show()
