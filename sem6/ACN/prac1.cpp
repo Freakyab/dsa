@@ -12,7 +12,7 @@ void checkValidate(const string& ip, int arr[], int& index)
         {
             if (oct[0] == '0' && oct.size() != 1)
             {
-                cout << "Leading zero issue found\n";
+                cout << "Error: Leading zero issue found\n";
                 exit(1); // Exit with an error code
             }
 
@@ -21,14 +21,14 @@ void checkValidate(const string& ip, int arr[], int& index)
                 int digit = stoi(oct);
                 if (digit < 0 || digit > 255)
                 {
-                    cout << "Not in range\n";
+                    cout << "Error: Not in range\n";
                     exit(2); // Exit with an error code
                 }
                 arr[index++] = digit;
             }
             catch (std::exception &e)
             {
-                cout << "Alphabet found\n";
+                cout << "Error: Alphabet found\n";
                 exit(3); // Exit with an error code
             }
 
@@ -46,14 +46,14 @@ void checkValidate(const string& ip, int arr[], int& index)
         int digit = stoi(oct);
         if (digit < 0 || digit > 255)
         {
-            cout << "Not in range\n";
+            cout << "Error: Not in range\n";
             exit(2); // Exit with an error code
         }
         arr[index++] = digit;
     }
     catch (std::exception &e)
     {
-        cout << "Alphabet found\n";
+        cout << "Error: Alphabet found\n";
         exit(3); // Exit with an error code
     }
 }
@@ -62,15 +62,15 @@ void validateClass(int arr[])
 {
     if (arr[0] == 169 && arr[1] == 254 && arr[2] >= 0 && arr[2] <= 14)
     {
-        cout << "Link-local addresses";
+        cout << "Special Address: Link-local addresses";
     }
     else if (arr[0] == 127)
     {
-        cout << "Loop-back addresses";
+        cout << "Special Address: Loop-back addresses";
     }
     else if (arr[0] == 224 || arr[0] == 254)
     {
-        cout << "Experimental or reserved for special purpose use";
+        cout << "Special Address: Experimental or reserved for special purpose use";
     }
     else if (arr[0] >= 1 && arr[0] <= 126)
     {
@@ -86,7 +86,7 @@ void validateClass(int arr[])
     }
     else
     {
-        cout << "Used to communicate within the current network";
+        cout << "Special Address: Used to communicate within the current network";
     }
 
     cout << endl;
@@ -95,6 +95,7 @@ void validateClass(int arr[])
 int main()
 {
     string ipAddr;
+    cout << "Enter the ip: ";
     cin >> ipAddr;
 
     int arr[4], index = 0;
@@ -102,7 +103,7 @@ int main()
 
     if (index != 4)
     {
-        cout << "IP address must have exactly 4 octets\n";
+        cout << "Error: IP address must have exactly 4 octets\n";
         exit(4); // Exit with an error code
     }
 
