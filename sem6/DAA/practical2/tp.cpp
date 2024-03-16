@@ -44,7 +44,7 @@ void printColorArray(int arr[], int n, int left, int right, int largest)
     cout << endl;
 }
 
-void heapify(int arr[], int n, int i)
+void heapify(int arr[], int n, int i,int N)
 {
     cout << "Array : ";
     printArray(arr, n);
@@ -55,7 +55,7 @@ void heapify(int arr[], int n, int i)
     cout << "largest: " << largest << "\t";
     cout << "left: " << left << "\t";
     cout << "right: " << right << endl;
-    printColorArray(arr, 6, left, right, largest);
+    printColorArray(arr, N, left, right, largest);
 
     if (left < n && arr[left] > arr[largest])
     {
@@ -66,14 +66,20 @@ void heapify(int arr[], int n, int i)
     {
         largest = right;
     }
-    cout << "largest value :" << largest<<endl;
+    cout << "largest value :" << largest << endl;
 
     if (largest != i)
     {
+        cout << "largest != i therefore,\n";
+        cout << "Arr[" << i << "]"
+             << " = " << arr[i] << " // i = " << i << "\n";
+        cout << "Arr[" << largest << "]"
+             << " = " << arr[largest] << " // largest = " << largest << "\n";
         swap(arr[i], arr[largest]);
-        heapify(arr, n, largest);
-        cout << "After swapping\n";
         printArray(arr, n);
+        heapify(arr, n, largest , N);
+        cout << "End of if loop \n";
+        // printArray(arr, n);
     }
 }
 
@@ -81,13 +87,13 @@ void heapSort(int arr[], int n)
 {
     for (int i = n / 2 - 1; i >= 0; i--)
     {
-        heapify(arr, n, i);
+        heapify(arr, n, i, n);
     }
-
+    cout << "\n\n\n\nReverse order array\n\n\n\n";
     for (int i = n - 1; i >= 0; i--)
     {
         swap(arr[0], arr[i]);
-        heapify(arr, i, 0);
+        heapify(arr, i, 0 ,n);
     }
 }
 
@@ -111,7 +117,7 @@ void insertionSort(int arr[], int n)
 int main()
 {
     int arr[] = {3, 5, 1, 10, 20, 4};
-
-    heapSort(arr, 6);
+    int n = sizeof(arr) / sizeof(arr[0]);
+    heapSort(arr, n);
     // printArray(arr, 3);
 }

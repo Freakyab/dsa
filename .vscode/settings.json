@@ -5,6 +5,7 @@
         "iostream": "cpp",
         "cmath": "cpp",
         "ostream": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "random": "cpp"
     }
 }
