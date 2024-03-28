@@ -92,6 +92,7 @@ int partition(int arr[], int low, int high)
         {
             i++;
             swap(arr[i], arr[j]);
+     
         }
     }
     swap(arr[i + 1], arr[high]);
@@ -190,8 +191,8 @@ int main()
         quickSort(arr, 0, n - 1);
         end_b = clock();
         total_b = ((float)(end_b - start_b)) / CLOCKS_PER_SEC;
-        // cout << "N - " << n << ": " << setprecision(10) << total_b  << ": Q\t";
-        // cout << setprecision(10) << total_b  << ",";
+        cout << "N - " << n << ": " << setprecision(10) << total_b  << ": Q\t";
+        cout << setprecision(10) << total_b  << ",";
         // updateFile(arr,randomNumberFile,n);
 
         // Update the file with the sorted array
@@ -207,8 +208,8 @@ int main()
         end_s = clock();
         total_s = ((float)(end_s - start_s)) / CLOCKS_PER_SEC;
         
-        // cout << "N - " << n << ": " << setprecision(10) << total_s << ": H\n";
-        cout << setprecision(10) << total_b  << ",";
+        cout << "N - " << n << ": " << setprecision(10) << total_s << ": H\n";
+        // cout << setprecision(10) << total_b  << ",";
 
         // Increase the size of the array for the next iteration
         n = n + 20000;
