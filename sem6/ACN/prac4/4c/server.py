@@ -1,6 +1,5 @@
 import socket
 
-
 def run_server():
     # create a socket object
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -24,7 +23,7 @@ def run_server():
         request = request.decode("utf-8") # convert bytes to string
         
         # if we receive "close" from the client, then we break
-        # out of the loop and close the conneciton
+        # out of the loop and close the connection
         if request.lower() == "close":
             # send response to the client which acknowledges that the
             # connection should be closed and break out of the loop
@@ -33,8 +32,10 @@ def run_server():
 
         print(f"Received: {request}")
 
-        response = "accepted".encode("utf-8") # convert string to bytes
-        # convert and send accept response to the client
+        # Prompt for message to send to the client
+        response = input("Enter message to send to client: ").encode("utf-8")
+
+        # Send the message to the client
         client_socket.send(response)
 
     # close connection socket with the client
@@ -42,6 +43,5 @@ def run_server():
     print("Connection to client closed")
     # close server socket
     server.close()
-
 
 run_server()

@@ -9,7 +9,6 @@ def client():
     
     clientSocket = socket.socket()
     clientSocket.connect((host, port))
-    print("")
     
     message = input(" -> ")
     
