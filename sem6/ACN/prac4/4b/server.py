@@ -4,8 +4,8 @@ def run_server():
     # create a socket object
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    server_ip = "192.168.44.189"
-    port = 8000
+    server_ip = "192.168.242.107"
+    port = 7000
 
     # bind the socket to a specific address and port
     server.bind((server_ip, port))

@@ -23,9 +23,7 @@ void printJobSequence(Job jobSequence[], int n)
     {
         if (jobSequence[i].profit != 0)
         {
-            cout << "Job Name: " << jobSequence[i].jobName
-                 << ", Deadline: " << jobSequence[i].deadline
-                 << ", Profit: " << jobSequence[i].profit << endl;
+            cout << "Job Name: " << jobSequence[i].jobName << ", Deadline: " << jobSequence[i].deadline << ", Profit: " << jobSequence[i].profit << endl;
             totalProfit += jobSequence[i].profit;
         }
     }

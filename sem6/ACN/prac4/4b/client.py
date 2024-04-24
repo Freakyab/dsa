@@ -1,28 +1,27 @@
-# Simplex duplex communication between server and client
-
 import socket
 
-def client():
-    host = socket.gethostname()
-    print(host)
-    port = 8080
-    
-    clientSocket = socket.socket()
-    clientSocket.connect((host, port))
-    print("")
-    
-    message = input(" -> ")
-    
-    while message.lower().strip() != 'bye':
-        clientSocket.send(message.encode())
-        data = clientSocket.recv(1024).decode()
-        
-        print("Received from server: " + data)
-        
-        message = input(" -> ")
-        
-    clientSocket.close()
-    
-if __name__ == '__main__':
-    client()
-    
+def run_client():
+    server_ip = "127.0.0.1"
+    port = 7000
+
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client.connect((server_ip, port))
+
+    print("Connected to server")
+
+    while True:
+        message = input("Enter message to send to server: ")
+        client.send(message.encode("utf-8"))
+
+        if message.lower() == "close":
+            response = client.recv(1024)
+            print(response.decode("utf-8"))
+            break
+
+        response = client.recv(1024)
+        print("Response from server:", response.decode("utf-8"))
+
+    client.close()
+    print("Connection to server closed")
+
+run_client()

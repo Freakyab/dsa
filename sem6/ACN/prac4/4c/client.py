@@ -1,31 +1,26 @@
 import socket
 
-
 def run_client():
-    # create a socket object
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_ip = "192.168.242.107"
+    port = 8000
 
-    server_ip = "192.168.12.111"  # replace with the server's IP address
-    server_port = 8000  # replace with the server's port number
-    # establish connection with server
-    client.connect((server_ip, server_port))
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client.connect((server_ip, port))
+
+    print("Connected to server")
 
     while True:
-        # input message and send it to the server
-        msg = input("Enter message: ")
-        client.send(msg.encode("utf-8")[:1024])
+        message = input("Enter message to send to server: ")
+        client.send(message.encode("utf-8"))
 
-        # receive message from the server
-        response = client.recv(1024)
-        response = response.decode("utf-8")
-
-        # if server sent us "closed" in the payload, we break out of the loop and close our socket
-        if response.lower() == "closed":
+        if message.lower() == "close":
+            response = client.recv(1024)
+            print(response.decode("utf-8"))
             break
 
-        print(f"Received: {response}")
+        response = client.recv(1024)
+        print("Response from server:", response.decode("utf-8"))
 
-    # close client socket (connection to the server)
     client.close()
     print("Connection to server closed")
 
