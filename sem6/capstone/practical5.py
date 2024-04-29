@@ -37,9 +37,47 @@ def decrypt(text,s):
 text = "ATTACKATONCE"
 
 s = 4
-print ("Text  : " + text)
-print ("Shift : " + str(s))
-print ("Cipher: " + encrypt(text,s))
-print ("Decipher: " + decrypt(encrypt(text,s),s))
+# print ("Text  : " + text)
+# print ("Shift : " + str(s))
+# print ("Cipher: " + encrypt(text,s))
+# print ("Decipher: " + decrypt(encrypt(text,s),s))
 
 # End to End chatbot using python
+# Define a dictionary of responses
+responses = {
+    "hi": "Hello!",
+    "how are you?": "I'm good, thank you!",
+    "bye": "Goodbye!",
+    "default": "I'm sorry, I don't understand that."
+}
+
+# Function to get response from user input
+def get_response(user_input):
+    # Convert user input to lowercase
+    user_input = user_input.lower()
+    
+    # Check if user input exists in responses dictionary
+    if user_input in responses:
+        return responses[user_input]
+    else:
+        return responses["default"]
+
+# Main function for chatting
+def chat():
+    print("Chatbot: Hi there! How can I help you?")
+    
+    while True:
+        # Get user input
+        user_input = input("You: ")
+        
+        # Check for exit command
+        if user_input.lower() == "exit":
+            print("Chatbot: Goodbye!")
+            break
+        
+        # Get response and print it
+        response = get_response(user_input)
+        print("Chatbot:", response)
+
+# Start the chat
+chat()

@@ -36,15 +36,8 @@ def weather_App():
     city_no_space = city.replace(" ", "")
     
     r = requests.get(f'https://www.weather-forecast.com/locations/{city_no_space}/forecasts/latest')
- 
-    # check status code for response received
-    # success code - 200
-    # print(r)
-    
-    # print content of request
-    # print(r.content)
+
     soup = BeautifulSoup(r.content, 'html.parser')
-    # print(soup)
     temperature_span = soup.find('span', class_='temp')
     place = soup.find('div', class_='main-title__issued show-for-medium-up')
 

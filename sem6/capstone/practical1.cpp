@@ -5,12 +5,14 @@ using namespace std;
 
 int RandomNoGenerator()
 {
+    cout << "RandomNoGenerator" << endl;
     srand(time(0));
-    return rand() % 6;
+    cout << rand() % 6;
 }
 
 int GuessTheNo()
 {
+    cout << "GuessTheNo" << endl;
     srand(time(0));
     int secretNo = rand() % 100 + 1;
     int guessNo, attempt = 0;
@@ -38,6 +40,7 @@ int GuessTheNo()
 
 void RandomPasswordGenerator()
 {
+    cout << "RandomPasswordGenerator" << endl;
     string allSet = "1234567890QWERTYUIOPLKJHGFDSAZXCVBNM";
     string password = "";
     for (int i = 0; i < 10; i++)
@@ -47,10 +50,10 @@ void RandomPasswordGenerator()
     cout << "The suggested password is: ";
     cout << password;
 }
+
 int main()
 {
-    // cout << "The rolled no. is: ";
-    // cout << RandomNoGenerator();
+    // RandomNoGenerator();
     // GuessTheNo();
     RandomPasswordGenerator();
 }
