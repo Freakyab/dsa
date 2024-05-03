@@ -6,6 +6,10 @@
         "cmath": "cpp",
         "ostream": "cpp",
         "iomanip": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "string": "cpp",
+        "typeinfo": "cpp",
+        "*.tcc": "cpp",
+        "regex": "cpp"
     }
 }
