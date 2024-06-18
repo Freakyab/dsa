@@ -96,8 +96,8 @@ int compareMIN(const ObjDetails &a, const ObjDetails &b)
 }
 int compareRATIO(const ObjDetails &a, const ObjDetails &b)
 {
-    float value1 = a.vi / a.wi;
-    float value2 = b.vi / b.wi;
+    float value1 = (float) a.vi / a.wi;
+    float value2 =(float) b.vi / b.wi;
     return value1 > value2;
 }
 

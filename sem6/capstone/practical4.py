@@ -26,7 +26,7 @@ def download_youtube_video(url):
     try:
         yt = YouTube(url)
         video = yt.streams.filter(progressive=True, file_extension='mp4').first()
-        video.download(output_path='E:\yt video download',filename=f'{video.default_filename}.mp4')
+        video.download(output_path='F:\yt assests',filename=f'{video.default_filename}.mp4')
         return 'Video downloaded successfully'
     except Exception as e:
         return f'Error downloading video: {e}'

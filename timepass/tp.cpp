@@ -1,107 +1,131 @@
-#include <iostream>
-#include <ctime>
-#include <fstream>
+// #include <bits/stdc++.h>
+
+// using namespace std;
+
+// #define V 6
+
+// int minKey(int key[], bool mstSet[])
+// {
+//     int min = INT_MAX, min_index;
+//     for (int v = 0; v < V; v++)
+//     {
+//         if (!mstSet[v] && key[v] < min)
+//         {
+//             min = key[v];
+//             min_index = v;
+//         }
+//     }
+//     return min_index;
+// }
+
+// void Print(int parent[], int graph[V][V])
+// {
+//     cout << "Edge \tWeight\n";
+//     for (int i = 1; i < V; i++)
+//         cout << parent[i] << "-" << i << "\t" << graph[i][parent[i]] << endl;
+// }
+
+// void prism(int graph[V][V])
+// {
+//     int parent[V], key[V];
+//     bool mstSet[V];
+
+//     for (int i = 0; i < V; i++)
+//     {
+//         key[i] = INT_MAX;
+//         mstSet[i] = false;
+//     }
+
+//     key[0] = 0;
+//     parent[0] = -1;
+
+//     for (int v = 0; v < V - 1; v++)
+//     {
+//         int u = minKey(key, mstSet);
+//         mstSet[u] = true;
+
+//         for (int k = 0; k < V; k++)
+//         {
+//             if (graph[u][k] && !mstSet[v] && graph[u][k] < key[k])
+//             {
+//                 parent[k] = u;
+//                 key[k] = graph[u][k];
+//             }
+//         }
+//     }
+
+//     Print(parent,graph);
+// }
+
+// int main() {
+//     /* Example graph:
+//         2    3
+//     (0)--(1)--(2)
+//      |   / \   |
+//     6| 8/   \5 |7
+//      | /     \ |   2
+//     (3)-------(4)------(5)
+//           9         */
+//     int graph[V][V] = {{0, 2, 0, 6, 0, 0},
+//                        {2, 0, 3, 8, 5, 0},
+//                        {0, 3, 0, 0, 7, 0},
+//                        {6, 8, 0, 0, 9, 0},
+//                        {0, 5, 7, 9, 0, 2},
+//                        {0, 0, 0, 0, 2, 0}};
+
+//     // Print the MST
+//     prism(graph);
+
+//     return 0;
+// }
+
+#include <bits\stdc++.h>
 
 using namespace std;
 
-void WTF(int n)
+int print(int arr[], int n, int pivot)
 {
-    srand(time(0));
-
-    ofstream myFile("this.txt");
-
     for (int i = 0; i < n; i++)
     {
-        myFile << rand() % 100000 << endl;
-    }
-
-    myFile.close();
-}
-
-void RTF(int arr[]){
-    ifstream myFile("this.txt");
-
-    int j = 0,i =0;
-    while(myFile >> i){
-        cout << i<< " ";
-        arr[j] = i;
-        j++;
-    }
-}
-
-int merge(int arr[], int l, int r, int m)
-{
-    int n1 = m - l + 1;
-    int n2 = r - m;
-
-    int L[n1], R[n2];
-    for (int i = 0; i < n1; i++)
-        L[i] = arr[l + i];
-    for (int j = 0; j < n2; j++)
-        R[j] = arr[m + 1 + j];
-
-    int i = 0, j = 0, k = l;
-
-    while (i < n1 && j < n2)
-    {
-        if (L[i] < R[j])
-        {
-            arr[k] = L[i];
-            i++;
-        }
-        else
-        {
-            arr[k] = R[j];
-            j++;
-        }
-        k++;
-    }
-
-    while (i < n1)
-    {
-        arr[k] = L[i];
-        i++, k++;
-    }
-    while (j < n2)
-    {
-        arr[k] = R[j];
-        j++, k++;
-    }
-}
-
-int mergeSort(int l, int r, int arr[])
-{
-    if (l < r)
-    {
-        int m = (l + r) / 2;
-        mergeSort(l, m, arr);
-        mergeSort(m + 1, r, arr);
-
-        merge(arr, l, r, m);
-    }
-}
-
-int insertion(int arr[],int n){
-    for(int i= 1; i<n;i++){
-        int key = arr[i];
-        int j = i-1;
-
-        while(j >= 0 && arr[j] > key){
-            arr[j+1] = arr[j];
-            j = j-1;
-        }
-        arr[j+1] = key;
-    }
-}
-
-int main(){
-    // int arr[] = {9,8,7,6,5,4,3,2,1};
-    int arr[10];
-    int n = sizeof(arr) / sizeof(arr[0]);
-    // WTF(n);
-    RTF(arr);
-
-    for(int i =0; i<n;i++){
         cout << arr[i] << " ";
     }
+    cout << "\t" << pivot;
+    cout << endl;
+}
+
+int partition(int arr[], int l, int h, int n)
+{
+    int pivot = arr[h];
+    int i = l - 1;
+
+    for (int j = l; j < h; j++)
+    {
+        if (arr[j] < pivot)
+        {
+            print(arr, n, pivot);
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[h]);
+    return i + 1;
+}
+
+int QuickSort(int arr[], int low, int high, int n)
+{
+    if (low < high)
+    {
+        int pivot = partition(arr, low, high, n);
+        QuickSort(arr, low, pivot - 1, n);
+        QuickSort(arr, pivot + 1, high, n);
+    }
+}
+
+int main()
+{
+    int arr[] = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    QuickSort(arr, 0, n, n);
+    print(arr, n, -1);
 }

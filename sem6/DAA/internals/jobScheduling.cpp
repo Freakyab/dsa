@@ -1,82 +1,177 @@
 #include <iostream>
 #include <algorithm>
-
 using namespace std;
 
-class jobScheduling
+// class Job
+// {
+// public:
+//     string jobName;
+//     int deadline;
+//     int profit;
+// };
+
+// bool compareJobs(const Job &a, const Job &b)
+// {
+//     return a.profit > b.profit;
+// }
+
+// void printJobSequence(Job jobSequence[], int n)
+// {
+//     int totalProfit = 0;
+//     cout << "Selected Jobs:\n";
+//     for (int i = 0; i < n; ++i)
+//     {
+//         if (jobSequence[i].profit != 0)
+//         {
+//             cout << "Job Name: " << jobSequence[i].jobName << ", Deadline: " << jobSequence[i].deadline << ", Profit: " << jobSequence[i].profit << endl;
+//             totalProfit += jobSequence[i].profit;
+//         }
+//     }
+//     cout << "Total Profit: " << totalProfit << endl;
+// }
+
+// void jobSequencing(Job jobs[], int n)
+// {
+//     int maxDeadline = 0;
+//     for (int i = 0; i < n; ++i)
+//     {
+//         maxDeadline = max(maxDeadline, jobs[i].deadline);
+//     }
+
+//     Job jobSequence[maxDeadline];
+
+//     for (int i = 0; i < maxDeadline; ++i)
+//     {
+//         jobSequence[i].profit = 0;
+//     }
+
+//     for (int i = 0; i < n; ++i)
+//     {
+//         int k = min(maxDeadline, jobs[i].deadline);
+//         while (k > 0) // Change the loop condition to k > 0
+//         {
+//             if (jobSequence[k - 1].profit == 0) // Adjust array index
+//             {
+//                 jobSequence[k - 1] = jobs[i]; // Adjust array index
+//                 break;
+//             }
+//             k--;
+//         }
+//     }
+
+//     printJobSequence(jobSequence, maxDeadline);
+// }
+
+// int main()
+// {
+//     int n;
+
+//     cout << "Enter the no. of Jobs: ";
+//     cin >> n;
+
+//     Job jobs[n];
+
+//     for (int i = 0; i < n; ++i)
+//     {
+//         cout << "Enter the job Name: ";
+//         cin >> jobs[i].jobName;
+//         cout << "Enter the deadline: ";
+//         cin >> jobs[i].deadline;
+//         cout << "Enter the profit: ";
+//         cin >> jobs[i].profit;
+//     }
+
+//     sort(jobs, jobs + n, compareJobs);
+
+//     jobSequencing(jobs, n);
+
+//     return 0;
+// }
+
+class Job
 {
 public:
-    int jobname;
-    int deadline, profit;
-    jobScheduling()
+    int deadline;
+    int profit;
+    int jobNo;
+
+    Job()
     {
         profit = 0;
     }
 };
-void setValue(int index, int deadline, int profit, jobScheduling a[])
-{
-    a[index].deadline = deadline;
-    a[index].profit = profit;
-    a[index].jobname = index + 1;
-}
 
-int compareProfit(jobScheduling &a, jobScheduling &b)
+bool compareJobs(const Job &a, const Job &b)
 {
     return a.profit > b.profit;
 }
 
-void printJobSequence(jobScheduling job[], int n)
+
+void printJobSequence(Job jobSequence[], int n)
 {
     int totalProfit = 0;
     cout << "Selected Jobs:\n";
     for (int i = 0; i < n; ++i)
     {
-        if (job[i].profit != 0)
+        if (jobSequence[i].profit != 0)
         {
-            cout << "Job Name: " << job[i].jobname
-                 << ", Deadline: " << job[i].deadline
-                 << ", Profit: " << job[i].profit << endl;
-            totalProfit += job[i].profit;
+            cout << "Job Name: " << jobSequence[i].jobNo << ", Deadline: " << jobSequence[i].deadline << ", Profit: " << jobSequence[i].profit << endl;
+            totalProfit += jobSequence[i].profit;
         }
     }
     cout << "Total Profit: " << totalProfit << endl;
 }
-
-int main()
+void jobSeq(Job jobs[], int n)
 {
-    int limit = 5;
-    jobScheduling array[limit];
-    setValue(0, 2, 60, array);
-    setValue(1, 1, 100, array);
-    setValue(2, 3, 20, array);
-    setValue(3, 2, 40, array);
-    setValue(4, 1, 20, array);
-
-    sort(array, array + limit, compareProfit);
-
-    int maxDead = 0;
-    for (int i = 0; i < limit; i++)
+    int Dmax = 0;
+    for (int i = 0; i < n; i++)
     {
-        maxDead = max(array[i].deadline, maxDead);
+        Dmax = max(Dmax, jobs[i].deadline);
     }
-    cout << maxDead << endl;
+    cout<<Dmax <<endl;
+    Job newJob[Dmax];
 
-    jobScheduling result[maxDead];
-
-    for (int i = 0; i < limit; i++)
+    for (int i = 0; i < n; i++)
     {
-        int k = min(maxDead, array[i].deadline);
-
+        int k = min(Dmax, jobs[i].deadline);
+        cout << k << " K value\n";
         while (k > 0)
         {
-            if (result[k - 1].profit == 0)
+            if (newJob[k - 1].profit == 0)
             {
-                result[k - 1] = array[i];
+                newJob[k - 1] = jobs[i];
                 break;
             }
-            k--; // Move to the previous slot if the current slot is already occupied
+            else
+            {
+                k--;
+            }
         }
     }
 
-    printJobSequence(result, maxDead);
+    printJobSequence(newJob,Dmax);
+}
+
+int main()
+{
+
+    int n;
+
+    cout << "Enter the no. of jobs: ";
+    cin >> n;
+
+    Job jobs[n];
+
+    for (int i = 0; i < n; i++)
+    {
+        jobs[i].jobNo = i + 1;
+        cout << "Enter the deadline: ";
+        cin >> jobs[i].deadline;
+        cout << "Enter the Profit: ";
+        cin >> jobs[i].profit;
+    }
+
+    sort(jobs, jobs + n, compareJobs);
+
+    jobSeq(jobs, n);
 }

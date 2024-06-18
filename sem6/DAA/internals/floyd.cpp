@@ -71,7 +71,7 @@ using namespace std;
 
 #define v 4
 
-int bellman(int graph[v][v])
+int floyd(int graph[v][v])
 {
     int dist[v][v];
     for (int i = 0; i < v; i++)
@@ -109,10 +109,10 @@ int bellman(int graph[v][v])
 int main()
 {
 
-    int graph[v][v] = {{0, 5, INT_MAX, 10},
-                       {INT_MAX, 0, 3, INT_MAX},
-                       {INT_MAX, INT_MAX, 0, 1},
-                       {INT_MAX, INT_MAX, INT_MAX, 0}};
+    int graph[v][v] = {{0, 3, INT_MAX, 7},
+                       {8, 0, 2, INT_MAX},
+                       {5, INT_MAX, 0, 1},
+                       {2, INT_MAX, INT_MAX, 0}};
 
-    bellman(graph);
+    floyd(graph);
 }
