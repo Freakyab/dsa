@@ -1,1 +1,0 @@
-# Simplex duplex communication between server and client
