@@ -40,7 +40,7 @@ char Encrypt(char plainWord, int k)
     return cipherWord;
 }
 
-void vin(string plainText, string cipherText)
+void vingenere(string plainText, string key)
 {
     cout << "P.T : \t";
     for (int i = 0; i < plainText.size(); i++)
@@ -57,13 +57,13 @@ void vin(string plainText, string cipherText)
     cout << "key : \t";
     for (int j = 0; j < plainText.size(); j++)
     {
-        cout << getCapCharValue(cipherText[j % cipherText.size()]) << " |";
+        cout << getCapCharValue(key[j % key.size()]) << " |";
     }
     cout << endl;
     cout << "C.T : \t";
     for (int k = 0; k < plainText.size(); k++)
     {
-        cout << Encrypt(plainText[k], getCapCharValue(cipherText[k % cipherText.size()])) << " |";
+        cout << Encrypt(plainText[k], getCapCharValue(key[k % key.size()])) << " |";
     }
     cout << endl;
 }
@@ -71,9 +71,9 @@ void vin(string plainText, string cipherText)
 int main()
 {
     vigenereTabIe();
-    cout<<"\n\n\n";
+    cout << "\n\n\n";
     string plainText = "sheislistening";
-    string cipherText = "PASCAL";
+    string key = "PASCAL";
 
-    vin(plainText, cipherText);
+    vingenere(plainText, key);
 }
