@@ -31,15 +31,15 @@ void computeFirst(const string &nonTerminal, unordered_map<string, vector<string
             if (isupper(symbol[0])) {
                 // If the symbol is a non-terminal, compute its FIRST set recursively
                 computeFirst(symbol, expression, firstSet);
-                for (const string &firstSymbol : firstSet[symbol]) {
-                    if (firstSymbol != "?") {
-                        firstSet[nonTerminal].insert(firstSymbol);
-                    }
-                }
-                // If epsilon is in the FIRST set of the non-terminal, continue to the next symbol
-                if (firstSet[symbol].find("?") == firstSet[symbol].end()) {
-                    break;
-                }
+                // for (const string &firstSymbol : firstSet[symbol]) {
+                //     if (firstSymbol != "?") {
+                //         firstSet[nonTerminal].insert(firstSymbol);
+                //     }
+                // }
+                // // If epsilon is in the FIRST set of the non-terminal, continue to the next symbol
+                // if (firstSet[symbol].find("?") == firstSet[symbol].end()) {
+                //     break;
+                // }
             } else {
                 // If the symbol is a terminal, add it to the FIRST set
                 firstSet[nonTerminal].insert(symbol);
