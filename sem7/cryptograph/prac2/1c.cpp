@@ -1,22 +1,13 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
-
 using namespace std;
 
 void createInverseKey(int encryptionKey[], int length, int inverseKey[])
 {
-    pair<int, int> keyWithIndex[length];
+    // Find the inverse key by locating the position of each value
     for (int i = 0; i < length; i++)
     {
-        keyWithIndex[i] = make_pair(encryptionKey[i], i + 1);
-    }
-
-    sort(keyWithIndex, keyWithIndex + length);
-
-    for (int i = 0; i < length; i++)
-    {
-        inverseKey[keyWithIndex[i].second - 1] = i + 1;
+        // The inverse key at the position given by the encryption key should be `i + 1`
+        inverseKey[encryptionKey[i] - 1] = i + 1;
     }
 }
 
