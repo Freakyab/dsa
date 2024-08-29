@@ -3,7 +3,16 @@
 
 using namespace std;
 string keywords[] = {
-    "asm", "double", "new", "float", "return", "int"};
+    "auto", "break", "case", "char", "const", "continue", "default", "do",
+    "double", "else", "enum", "extern", "float", "for", "goto", "if", "inline",
+    "int", "long", "register", "return", "short", "signed", "sizeof", "static",
+    "struct", "switch", "typedef", "union", "unsigned", "void", "volatile",
+    "while", "class", "namespace", "template", "private", "protected", "public",
+    "virtual", "operator", "new", "delete", "this", "throw", "catch", "try",
+    "explicit", "friend", "mutable", "nullptr", "using", "static_assert",
+    "constexpr", "decltype", "noexcept", "thread_local"
+};
+
 void checkFloat(string token)
 {
     try
